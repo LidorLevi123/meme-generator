@@ -28,6 +28,22 @@ function renderMeme() {
     }
 }
 
+function onSetLineTxt(txt) {
+    setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetTxtColor(color) {
+    setTxtColor(color)
+    renderMeme()
+}
+
+function onSetFont(fontSize) {
+    console.log(+fontSize);
+    setFont(+fontSize)
+    renderMeme()
+}
+
 function drawText(text, size, color, x, y) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
@@ -40,7 +56,7 @@ function drawText(text, size, color, x, y) {
     gCtx.strokeText(text, x, y)
 }
 
-function onSetLineTxt(txt) {
-    setLineTxt(txt)
-    renderMeme()
+function onDownloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
 }

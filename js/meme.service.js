@@ -37,7 +37,25 @@ function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function getImgById(imgId) {
+    return gImgs.find(img => img.id === imgId)
+}
+
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+}
+
 function setLineTxt(txt) {
-   var currLine = getCurrLine()
-   currLine.txt = txt
+    const currLine = getCurrLine()
+    currLine.txt = txt
+}
+
+function setTxtColor(color) {
+    const currLine = getCurrLine()
+    currLine.color = color
+}
+
+function setFont(fontSize) {
+    const currLine = getCurrLine()
+    currLine.size = fontSize
 }

@@ -1,1 +1,3 @@
-@import url('components/gallery.css')
+/* COMPONENTS */
+@import url('components/gallery.css');
+@import url('components/meme-editor.css')
