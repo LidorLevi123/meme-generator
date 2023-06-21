@@ -13,12 +13,16 @@ var gMeme = {
         {
             txt: 'Hello World',
             size: 35,
-            color: 'white'
+            color: 'white',
+            x: 0,
+            y: 0
         },
         {
             txt: 'I sometimes eat Falafel',
             size: 25,
-            color: 'red'
+            color: 'red',
+            x: 0,
+            y: 0
         },
     ]
 }
@@ -37,10 +41,6 @@ function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-function getImgById(imgId) {
-    return gImgs.find(img => img.id === imgId)
-}
-
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
@@ -53,10 +53,6 @@ function setLine(prop) {
     currLine[key] = value
 }
 
-function addLine() {
-    gMeme.lines.push(_createLine())
-}
-
 function switchLine() {
     gMeme.selectedLineIdx++
     if(gMeme.selectedLineIdx === gMeme.lines.length) {
@@ -64,6 +60,10 @@ function switchLine() {
     }
 }
 
-function _createLine(txt = 'New Line', size = 35, color = 'white') {
-    return { txt, size, color }
+function addLine() {
+    gMeme.lines.push(_createLine())
+}
+
+function _createLine(txt = 'New Line', size = 35, color = 'white', x = 0, y = 0) {
+    return { txt, size, color, x, y }
 }

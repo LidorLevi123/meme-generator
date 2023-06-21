@@ -23,8 +23,6 @@ function resizeCanvas() {
 
 function renderMeme() {
     const meme = getMeme()
-    const { txt, size, color } = getCurrLine()
-
     const img = new Image()
 
     img.src = `img/${meme.selectedImgId}.jpg`
@@ -42,8 +40,9 @@ function onSetLine(prop) {
 }
 
 function onSwitchLine() {
+    renderMeme() // To clear previous frames
     switchLine()
-    drawLineFrame()
+    setTimeout(drawLineFrame, 20)
 
     const currLine = getCurrLine()
     document.querySelector('[name="text"]').value = currLine.txt
@@ -60,9 +59,11 @@ function onDownloadImg(elLink) {
 }
 
 function drawLines(meme) {
-    var yDiff = 10
-    meme.lines.forEach(({ txt, size, color }) => {
-        drawText(txt, size, color, gElCanvas.width / 2, yDiff)
+    var yDiff = 30
+    meme.lines.forEach(line => {
+        drawText(line.txt, line.size, line.color, gElCanvas.width / 2, yDiff)
+        line.x = gElCanvas.width / 2
+        line.y = yDiff
         yDiff += 40
     })
 }
@@ -73,12 +74,27 @@ function drawText(text, size, color, x, y) {
     gCtx.fillStyle = color
     gCtx.font = `${size}px Impact`
     gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'top'
+    gCtx.textBaseline = 'middle'
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
 
 function drawLineFrame() {
+    const { txt, size, x, y } = getCurrLine()
+    gCtx.font = `${size}px Impact`
 
+    const txtMetrics = gCtx.measureText(txt)
+    const txtWidth = txtMetrics.width
+    const txtHeight = txtMetrics.fontBoundingBoxAscent + txtMetrics.fontBoundingBoxDescent
+
+    const frameX = x - (txtWidth/2) - 8
+    const frameY = y - (txtHeight/2) - 4
+    const frameWidth = txtWidth + 16
+    const frameHeight = txtHeight + 8
+
+    gCtx.beginPath()
+    gCtx.lineWidth = 3
+    gCtx.strokeStyle = 'white'
+    gCtx.strokeRect(frameX, frameY, frameWidth, frameHeight)
 }
