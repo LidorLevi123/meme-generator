@@ -3,7 +3,7 @@
 let gElCanvas
 let gCtx
 
-function onInit() {
+function initMeme() {
     setCanvas()
     renderMeme()
 }
