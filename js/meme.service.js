@@ -45,17 +45,25 @@ function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
 
-function setLineTxt(txt) {
+function setLine(prop) {
     const currLine = getCurrLine()
-    currLine.txt = txt
+    const key = Object.keys(prop)[0]
+    const value = prop[key]
+
+    currLine[key] = value
 }
 
-function setTxtColor(color) {
-    const currLine = getCurrLine()
-    currLine.color = color
+function addLine() {
+    gMeme.lines.push(_createLine())
 }
 
-function setFont(fontSize) {
-    const currLine = getCurrLine()
-    currLine.size = fontSize
+function switchLine() {
+    gMeme.selectedLineIdx++
+    if(gMeme.selectedLineIdx === gMeme.lines.length) {
+        gMeme.selectedLineIdx = 0
+    }
+}
+
+function _createLine(txt = 'New Line', size = 35, color = 'white') {
+    return { txt, size, color }
 }

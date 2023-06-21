@@ -16,14 +16,16 @@
         <div class="canvas-container">
             <canvas width="300" height="300"></canvas>
         </div>
-            <input oninput="onSetLineTxt(this.value)" type="text" name="text" placeholder="Edit text">
-            <input oninput="onSetTxtColor(this.value)" type="color" name="color">
+            <input oninput="onSetLine({ txt: this.value })" type="text" name="text" placeholder="Edit text">
+            <input oninput="onSetLine({ color: this.value })" type="color" name="color">
 
             <a href="#" onclick="onDownloadImg(this)" class="btn" download="my-img.jpg">Download as jpeg</a>
 
             <label for="font-edit">Choose Font Size:</label>
-            <input oninput="onSetFont(this.value);this.title = this.value" type="range" id="font-edit" name="font-edit" min="18" max="48">
+            <input oninput="onSetLine({ size: +this.value });this.title = this.value" type="range" id="font-edit" name="font-edit" min="16" max="54">
 
+            <button onclick="onAddLine()" class="btn line-add">Add Line</button>
+            <button onclick="onSwitchLine()" class="btn line-switch">Switch Line</button>
     </section>
 
     <script src="js/meme.service.js"></script>

@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.meme-editor {
+    min-width: 20px;
+    max-width: 700px;
+}
+
+.canvas-container {
+    
+}

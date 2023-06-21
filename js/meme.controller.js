@@ -5,12 +5,20 @@ let gCtx
 
 function initMeme() {
     setCanvas()
-    renderMeme()
+    resizeCanvas()
 }
 
 function setCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+
+    window.addEventListener('resize', resizeCanvas)
+    renderMeme()
 }
 
 function renderMeme() {
@@ -24,24 +32,39 @@ function renderMeme() {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(txt, size, color, gElCanvas.width / 2, 10)
+        drawLines(meme)
     }
 }
 
-function onSetLineTxt(txt) {
-    setLineTxt(txt)
+function onSetLine(prop) {
+    setLine(prop)
     renderMeme()
 }
 
-function onSetTxtColor(color) {
-    setTxtColor(color)
+function onSwitchLine() {
+    switchLine()
+    drawLineFrame()
+
+    const currLine = getCurrLine()
+    document.querySelector('[name="text"]').value = currLine.txt
+}
+
+function onAddLine() {
+    addLine()
     renderMeme()
 }
 
-function onSetFont(fontSize) {
-    console.log(+fontSize);
-    setFont(+fontSize)
-    renderMeme()
+function onDownloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
+function drawLines(meme) {
+    var yDiff = 10
+    meme.lines.forEach(({ txt, size, color }) => {
+        drawText(txt, size, color, gElCanvas.width / 2, yDiff)
+        yDiff += 40
+    })
 }
 
 function drawText(text, size, color, x, y) {
@@ -56,7 +79,6 @@ function drawText(text, size, color, x, y) {
     gCtx.strokeText(text, x, y)
 }
 
-function onDownloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+function drawLineFrame() {
+
 }
