@@ -12,17 +12,29 @@ var gMeme = {
     lines: [
         {
             txt: 'Hello World',
-            size: 35,
-            color: 'white',
-            x: 0,
-            y: 0
+            fontSize: 35,
+            color: '#ffffff',
+            pos: {
+                x: 0,
+                y: 0
+            },
+            size: {
+                width: 0,
+                height: 0
+            }
         },
         {
             txt: 'I sometimes eat Falafel',
-            size: 25,
-            color: 'red',
-            x: 0,
-            y: 0
+            fontSize: 25,
+            color: '#ff0000',
+            pos: {
+                x: 0,
+                y: 0
+            },
+            size: {
+                width: 0,
+                height: 0
+            }
         },
     ]
 }
@@ -41,6 +53,10 @@ function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function setCurrLine(line) {
+    gMeme.selectedLineIdx = gMeme.lines.indexOf(line)
+}
+
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
@@ -55,7 +71,7 @@ function setLine(prop) {
 
 function switchLine() {
     gMeme.selectedLineIdx++
-    if(gMeme.selectedLineIdx === gMeme.lines.length) {
+    if (gMeme.selectedLineIdx === gMeme.lines.length) {
         gMeme.selectedLineIdx = 0
     }
 }
@@ -64,6 +80,6 @@ function addLine() {
     gMeme.lines.push(_createLine())
 }
 
-function _createLine(txt = 'New Line', size = 35, color = 'white', x = 0, y = 0) {
-    return { txt, size, color, x, y }
+function _createLine(txt = 'New Line', fontSize = 35, color = '#ffffff', x = 0, y = 0, width = 0, height = 0) {
+    return { txt, fontSize, color, pos: { x, y }, size: { width, height } }
 }

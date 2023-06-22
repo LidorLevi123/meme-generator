@@ -17,12 +17,12 @@
             <canvas width="300" height="300"></canvas>
         </div>
             <input oninput="onSetLine({ txt: this.value })" type="text" name="text" placeholder="Edit text">
-            <input oninput="onSetLine({ color: this.value })" type="color" name="color">
+            <input oninput="onSetLine({ color: this.value })" type="color" name="color" value="#ffffff">
 
             <a href="#" onclick="onDownloadImg(this)" class="btn" download="my-img.jpg">Download as jpeg</a>
 
-            <label for="font-edit">Choose Font Size:</label>
-            <input oninput="onSetLine({ size: +this.value });this.title = this.value" type="range" id="font-edit" name="font-edit" min="16" max="54">
+            <label for="font-size">Choose Font Size:</label>
+            <input oninput="onSetLine({ fontSize: +this.value });this.title = this.value" type="range" id="font-size" name="font-size" min="16" max="54">
 
             <button onclick="onAddLine()" class="btn line-add">Add Line</button>
             <button onclick="onSwitchLine()" class="btn line-switch">Switch Line</button>
