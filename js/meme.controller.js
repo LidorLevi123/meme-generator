@@ -6,6 +6,7 @@ let gCtx
 function initMeme() {
     setCanvas()
     resizeCanvas()
+    renderStickers()
     addEventListeners()
 }
 
@@ -40,9 +41,18 @@ function renderSavedMemes() {
     var strHTMLs = savedMemes.map(meme => 
         `<img onclick="onImgSelect(${meme.selectedImgId}, false, true)" src="${meme.imgURL}" alt="Meme-img"></img>`
     )
-    document.querySelector('.gallery-container').innerHTML = strHTMLs.join('')
+    document.querySelector('.saved-memes-container').innerHTML = strHTMLs.join('')
     hideMemeEditor()
-    showGallery()
+    hideGallery()
+    showSavedMemes()
+}
+
+function renderStickers() {
+    const stickers = getStickers()
+
+    var strHTMLs = stickers.map(sticker => 
+        `<span onclick="onAddLine('${sticker}')">${sticker}</span>`)
+        document.querySelector('.sticker-container').innerHTML = strHTMLs.join('')
 }
 
 function addEventListeners() {
@@ -80,8 +90,8 @@ function onSwitchLine() {
     setInputs()
 }
 
-function onAddLine() {
-    addLine()
+function onAddLine(txt = '') {
+    addLine(txt)
     renderMeme()
 }
 

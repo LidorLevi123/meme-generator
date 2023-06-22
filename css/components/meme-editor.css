@@ -5,11 +5,20 @@
     translate: -50% -50%;
 
     display: none;
+    font-size: 18px;
 
     min-width: 20px;
     max-width: 700px;
 }
 
-.canvas-container {
+.meme-editor .btn {
+    font-size: 18px;
+}
+
+.meme-editor .canvas-container {
     max-width: 70vw;
+}
+
+.meme-editor .sticker-container > * {
+    cursor: pointer;
 }

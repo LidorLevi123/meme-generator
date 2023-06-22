@@ -23,9 +23,9 @@
 
     <section class="gallery">
         <button onclick="onImgSelect(null, true)">I'm flexible</button>
-        <input list="browsers">
+        <input list="keywords" oninput="onSetFilterImg(this.value)">
 
-        <datalist id="Filter">
+        <datalist id="keywords">
             <option value="Baby">
             <option value="Cat">
             <option value="Dog">
@@ -33,10 +33,12 @@
             <option value="Other">
         </datalist>
 
-        <section class="gallery-container"></section>
+        <section class="gallery-container grid"></section>
     </section>
 
-    <section class="meme-editor hidden">
+    <section class="saved-memes-container grid"></section>
+
+    <section class="meme-editor">
         <div class="canvas-container">
             <canvas width="300" height="300"></canvas>
         </div>
@@ -52,6 +54,8 @@
         <button onclick="onAddLine()" class="btn line-add">Add Line</button>
         <button onclick="onSwitchLine()" class="btn line-switch">Switch Line</button>
         <button onclick="onSaveMeme()" class="btn meme-save">Save Meme</button>
+
+        <div class="sticker-container flex wrap"></div>
     </section>
 
     <script src="js/utils.service.js"></script>

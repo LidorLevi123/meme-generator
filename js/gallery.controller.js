@@ -18,14 +18,20 @@ function onImgSelect(imgId, isFlexible = false, isSavedMeme) {
         const meme = gSavedMemes.find(meme => meme.selectedImgId === imgId)
         setMeme(meme)
     }
+    hideSavedMemes()
     hideGallery()
     showMemeEditor()
     setImg(+imgId)
     initMeme()
 }
 
-function showGallery() {
-    document.querySelector('.gallery').style.display = 'block'
+function onSetFilterImg(keyword) {
+    setFilterImg(keyword)
+    renderGallery()
+}
+
+function showSavedMemes() {
+    document.querySelector('.saved-memes-container').style.display = 'grid'
 }
 
 function showMemeEditor() {
@@ -38,4 +44,8 @@ function hideGallery() {
 
 function hideMemeEditor() {
     document.querySelector('.meme-editor').style.display = 'none'
+}
+
+function hideSavedMemes() {
+    document.querySelector('.saved-memes-container').style.display = 'none'
 }

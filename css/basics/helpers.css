@@ -11,6 +11,19 @@
     align-items: center;
 }
 
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+/* grid helpers */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit ,minmax(300px, 1fr));
+    grid-auto-flow: dense;
+    gap: 1em;
+    padding: 2em;
+}
+
 /* list helpers */
 .clean-list {
     margin: 0;
