@@ -15,13 +15,18 @@
         <nav class="main-nav-container">
             <ul class="main-nav flex clean-list">
                 <li><a href="">Gallery</a></li>
-                <li><a href="#">Saved memes</a></li>
+                <li><a href="#" onclick="renderSavedMemes()">Saved memes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="gallery-container"></section>
+    <section class="gallery">
+        <button onclick="onImgSelect(null, true)">I'm flexible</button>
+        <section class="gallery-container"></section>
+    </section>
+
+    <section class="saved-memes"></section>
 
     <section class="meme-editor hidden">
         <div class="canvas-container">
@@ -38,8 +43,11 @@
 
         <button onclick="onAddLine()" class="btn line-add">Add Line</button>
         <button onclick="onSwitchLine()" class="btn line-switch">Switch Line</button>
+        <button onclick="onSaveMeme()" class="btn meme-save">Save Meme</button>
     </section>
 
+    <script src="js/utils.service.js"></script>
+    <script src="js/storage.service.js"></script>
     <script src="js/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>

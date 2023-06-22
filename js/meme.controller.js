@@ -34,6 +34,13 @@ function renderMeme() {
     }
 }
 
+function renderSavedMemes() {
+    const savedMemes = getSavedMemes()
+    var strHTMLs = savedMemes.map(meme => {
+        `<img src="img/${meme.selectedImgId}.jpg" alt="Meme-img"></img>`
+    })
+}
+
 function addEventListeners() {
     window.addEventListener('resize', resizeCanvas)
 
@@ -79,12 +86,16 @@ function onDownloadImg(elLink) {
     elLink.href = imgContent
 }
 
+function onSaveMeme() {
+    saveMemeToStorage()
+}
+
 function drawLines(meme) {
     var yDiff = 30
     meme.lines.forEach(line => {
         drawText(line.txt, line.fontSize, line.color, gElCanvas.width / 2, yDiff)
         saveLinePosAndSize(line, gElCanvas.width / 2, yDiff)
-        yDiff += 40
+        yDiff = gElCanvas.height - 30
     })
 }
 

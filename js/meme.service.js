@@ -1,27 +1,8 @@
 'use strict'
 
+var gSavedMemes = loadMemeFromStorage() || []
+var gMeme = _createMeme()
 var gImgs = _createImgs(27)
-
-var gMeme = {
-    selectedImgId: 1,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'MEME ME!',
-            fontSize: 35,
-            color: '#ffffff',
-            pos: {
-                x: 0,
-                y: 0
-            },
-            size: {
-                width: 0,
-                height: 0
-            }
-        },
-    ]
-}
-
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getImgs() {
@@ -34,6 +15,15 @@ function getMeme() {
 
 function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getSavedMemes() {
+    return gSavedMemes
+}
+
+function setRandomLines() {
+    const randomLines = [_createLine(getRandomText()), _createLine(getRandomText())]
+    gMeme.lines = randomLines
 }
 
 function setCurrLine(line) {
@@ -77,4 +67,26 @@ function _createImgs(amount) {
         imgs.push(_createImg(i))
     }
     return imgs
+}
+
+function _createMeme() {
+    return {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'MEME ME!',
+                fontSize: 35,
+                color: '#ffffff',
+                pos: {
+                    x: 0,
+                    y: 0
+                },
+                size: {
+                    width: 0,
+                    height: 0
+                }
+            },
+        ]
+    }
 }
