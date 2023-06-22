@@ -34,6 +34,10 @@ function setImg(imgId) {
     gMeme.selectedImgId = imgId
 }
 
+function setMeme(meme) {
+    gMeme = meme
+}
+
 function setLine(prop) {
     const currLine = getCurrLine()
     const key = Object.keys(prop)[0]

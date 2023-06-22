@@ -23,10 +23,18 @@
 
     <section class="gallery">
         <button onclick="onImgSelect(null, true)">I'm flexible</button>
+        <input list="browsers">
+
+        <datalist id="Filter">
+            <option value="Baby">
+            <option value="Cat">
+            <option value="Dog">
+            <option value="President">
+            <option value="Other">
+        </datalist>
+
         <section class="gallery-container"></section>
     </section>
-
-    <section class="saved-memes"></section>
 
     <section class="meme-editor hidden">
         <div class="canvas-container">

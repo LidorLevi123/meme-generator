@@ -36,9 +36,13 @@ function renderMeme() {
 
 function renderSavedMemes() {
     const savedMemes = getSavedMemes()
-    var strHTMLs = savedMemes.map(meme => {
-        `<img src="img/${meme.selectedImgId}.jpg" alt="Meme-img"></img>`
-    })
+
+    var strHTMLs = savedMemes.map(meme => 
+        `<img onclick="onImgSelect(${meme.selectedImgId}, false, true)" src="${meme.imgURL}" alt="Meme-img"></img>`
+    )
+    document.querySelector('.gallery-container').innerHTML = strHTMLs.join('')
+    hideMemeEditor()
+    showGallery()
 }
 
 function addEventListeners() {
@@ -145,7 +149,7 @@ function saveLinePosAndSize(line, x, y) {
 
 function setInputs() {
     const { txt, color, fontSize } = getCurrLine() 
-    const elTxtInput = document.querySelector('[name="text"]').value = txt
-    const elClrInput = document.querySelector('[name="color"]').value = color
-    const elFontInput = document.querySelector('[name="font-size"]').value = fontSize
+    document.querySelector('[name="text"]').value = txt
+    document.querySelector('[name="color"]').value = color
+    document.querySelector('[name="font-size"]').value = fontSize
 }

@@ -6,29 +6,36 @@ function onInit() {
 
 function renderGallery() {
     const imgs = getImgs()
-    var strHTMLs = imgs.map(img => `<img data-id="${img.id}" onclick="onImgSelect(this)" src="${img.url}" alt="Meme-img"></img>`)
+    var strHTMLs = imgs.map(img => `<img onclick="onImgSelect(${img.id})" src="${img.url}" alt="Meme-img"></img>`)
     document.querySelector('.gallery-container').innerHTML = strHTMLs.join('')
 }
 
-function onImgSelect(elImg, isFlexible = false) {
-    let imgId = null
-
-    if(isFlexible) {
+function onImgSelect(imgId, isFlexible = false, isSavedMeme) {
+    if (isFlexible) {
         setRandomLines()
         imgId = getRandomInt(1, 27)
-    } else {
-        imgId = +elImg.dataset.id
+    } else if(isSavedMeme) {
+        const meme = gSavedMemes.find(meme => meme.selectedImgId === imgId)
+        setMeme(meme)
     }
     hideGallery()
     showMemeEditor()
-    setImg(imgId)
+    setImg(+imgId)
     initMeme()
+}
+
+function showGallery() {
+    document.querySelector('.gallery').style.display = 'block'
+}
+
+function showMemeEditor() {
+    document.querySelector('.meme-editor').style.display = 'block'
 }
 
 function hideGallery() {
     document.querySelector('.gallery').style.display = 'none'
 }
 
-function showMemeEditor() {
-    document.querySelector('.meme-editor').style.display = 'block'
+function hideMemeEditor() {
+    document.querySelector('.meme-editor').style.display = 'none'
 }
