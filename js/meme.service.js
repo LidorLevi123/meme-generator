@@ -1,32 +1,15 @@
 'use strict'
 
-var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['funny', 'baby'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['sad', 'cat'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['funny', 'cat'] }
-]
+var gImgs = _createImgs(27)
 
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'Hello World',
+            txt: 'MEME ME!',
             fontSize: 35,
             color: '#ffffff',
-            pos: {
-                x: 0,
-                y: 0
-            },
-            size: {
-                width: 0,
-                height: 0
-            }
-        },
-        {
-            txt: 'I sometimes eat Falafel',
-            fontSize: 25,
-            color: '#ff0000',
             pos: {
                 x: 0,
                 y: 0
@@ -82,4 +65,16 @@ function addLine() {
 
 function _createLine(txt = 'New Line', fontSize = 35, color = '#ffffff', x = 0, y = 0, width = 0, height = 0) {
     return { txt, fontSize, color, pos: { x, y }, size: { width, height } }
+}
+
+function _createImg(id) {
+    return { id, url: `img/${id}.jpg`, keywords: ['funny', 'baby'] }
+}
+
+function _createImgs(amount) {
+    var imgs = []
+    for (let i = 1; i <= amount; i++) {
+        imgs.push(_createImg(i))
+    }
+    return imgs
 }

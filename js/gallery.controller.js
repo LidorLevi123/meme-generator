@@ -1,8 +1,7 @@
 'use strict'
 
 function onInit() {
-    // renderGallery()
-    initMeme()
+    renderGallery()
 }
 
 function renderGallery() {
@@ -13,6 +12,16 @@ function renderGallery() {
 }
 
 function onImgSelect(elImg) {
+    hideGallery()
+    showMemeEditor()
     setImg(+elImg.dataset.id)
-    renderMeme()
+    initMeme()
+}
+
+function hideGallery() {
+    document.querySelector('.gallery-container').style.display = 'none'
+}
+
+function showMemeEditor() {
+    document.querySelector('.meme-editor').style.display = 'block'
 }

@@ -47,8 +47,10 @@ function addEventListeners() {
                 mouseY >= line.pos.y && mouseY <= line.pos.y + line.size.height) {
                 renderMeme()
                 setCurrLine(line)
-                setTimeout(drawLineFrame, 30)
                 setInputs()
+                setTimeout(drawLineFrame, 30)
+            } else {
+                renderMeme()
             }
         })
     })
@@ -57,6 +59,7 @@ function addEventListeners() {
 function onSetLine(prop) {
     setLine(prop)
     renderMeme()
+    // setTimeout(drawLineFrame, 1) ** Need to consider this line **
 }
 
 function onSwitchLine() {
@@ -130,8 +133,8 @@ function saveLinePosAndSize(line, x, y) {
 }
 
 function setInputs() {
-    const currLine = getCurrLine()
-    document.querySelector('[name="text"]').value = currLine.txt
-    document.querySelector('[name="color"]').value = currLine.color
-    document.querySelector('[name="font-size"]').value = currLine.fontSize
+    const { txt, color, fontSize } = getCurrLine() 
+    const elTxtInput = document.querySelector('[name="text"]').value = txt
+    const elClrInput = document.querySelector('[name="color"]').value = color
+    const elFontInput = document.querySelector('[name="font-size"]').value = fontSize
 }
