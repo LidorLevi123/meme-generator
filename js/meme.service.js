@@ -57,6 +57,15 @@ function setLine(prop) {
     currLine[key] = value
 }
 
+function setLineDragged(isLineDragged) {
+    gMeme.isLineDragged = isLineDragged
+}
+
+function setLinePos(line, dx, dy) {
+    line.pos.x += dx
+    line.pos.y += dy
+}
+
 function switchLine() {
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx === gMeme.lines.length) {
@@ -65,7 +74,12 @@ function switchLine() {
 }
 
 function addLine(txt = '') {
-    if(txt) gMeme.lines.push(_createLine(txt))
+    const line = _createLine()
+    if(txt) line.txt = txt
+
+    gMeme.lines.push(line)
+
+    return line
 }
 
 function isIncluded(keywords, word) {
@@ -96,14 +110,15 @@ function _createMeme() {
     return {
         selectedImgId: 1,
         selectedLineIdx: 0,
+        isLineDragged: false,
         lines: [
             {
                 txt: 'MEME ME!',
                 fontSize: 35,
                 color: '#ffffff',
                 pos: {
-                    x: 0,
-                    y: 0
+                    x: 100,
+                    y: 30
                 },
                 size: {
                     width: 0,
