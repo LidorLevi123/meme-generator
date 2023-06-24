@@ -10,6 +10,7 @@ function initMeme() {
     resizeCanvas()
     renderMeme()
     renderStickers()
+    setInitialLinesPos()
     addEventListeners()
 }
 
@@ -32,7 +33,6 @@ function renderMeme() {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        setInitialLinesPos()
         drawLines(meme)
     }
 }
