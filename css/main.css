@@ -1,3 +1,6 @@
+/* SETUP */
+@import url("setup/variables.css");
+
 /* BASICS */
 @import url("basics/base.css");
 @import url("basics/helpers.css");
@@ -5,3 +8,6 @@
 /* COMPONENTS */
 @import url('components/main-header.css');
 @import url('components/meme-editor.css');
+
+/* MEDIA QUERIES */
+@import url('basics/mq.css');

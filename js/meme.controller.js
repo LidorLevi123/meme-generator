@@ -8,6 +8,8 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function initMeme() {
     setCanvas()
     resizeCanvas()
+    setInitialLinesPos()
+    renderMeme()
     renderStickers()
     addEventListeners()
 }
@@ -20,15 +22,12 @@ function setCanvas() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    
-    setInitialLinePos()
-    renderMeme()
 }
 
 function renderMeme() {
     const meme = getMeme()
     const img = new Image()
-
+    
     img.src = `img/${meme.selectedImgId}.jpg`
     img.onload = () => {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
@@ -59,7 +58,10 @@ function renderStickers() {
 }
 
 function addEventListeners() {
-    window.addEventListener('resize', resizeCanvas)
+    window.addEventListener('resize', ()=> {
+        resizeCanvas()
+        renderMeme()
+    })
 
     gElCanvas.addEventListener('click', onLineClicked)
 
@@ -105,6 +107,15 @@ function onSetLine(prop) {
     renderMeme()
 }
 
+function onSetLang(lang) {
+    setLang(lang)
+    // if lang is hebrew add RTL class to document.body
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+    renderMeme()
+    doTrans()
+}
+
 function onSwitchLine() {
     renderMeme() // To clear previous frames
     switchLine()
@@ -118,6 +129,11 @@ function onAddLine(txt = '') {
     renderMeme()
 }
 
+function onDeleteLine() {
+    deleteLine()
+    renderMeme()
+}
+
 function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
@@ -125,6 +141,10 @@ function onDownloadImg(elLink) {
 
 function onSaveMeme() {
     saveMemeToStorage()
+}
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open')
 }
 
 function onLineClicked() {
@@ -167,6 +187,7 @@ function isLineClicked(line = null) {
 }
 
 function drawLines(meme) {
+    if(!meme.lines.length) return
     meme.lines.forEach(line => {
         drawText(line.txt, line.fontSize, line.color, line.pos.x, line.pos.y)
         saveLineSize(line, line.pos.x, line.pos.y)
@@ -240,12 +261,16 @@ function setInputs() {
     document.querySelector('[name="font-size"]').value = fontSize
 }
 
-function setInitialLinePos() {
+function setInitialLinesPos() {
     const { lines } = getMeme()
+
     lines.forEach(line => {
         line.pos.x = gElCanvas.width / 2
         line.pos.y = 30
     })
+
+    if(lines[0]) lines[0].pos.y = 30
+    if(lines[1]) lines[1].pos.y = gElCanvas.height
 }
 
 function saveLineSize(line) {

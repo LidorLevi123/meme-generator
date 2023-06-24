@@ -5,25 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/40a102fd35.js" crossorigin="anonymous"></script>
     <title>Meme Generator</title>
 </head>
 
 <body onload="onInit()">
 
+    <div class="main-screen" onclick="onToggleMenu()"></div>
+
     <header class="main-header flex space-between align-center">
         <h1 class="logo">Memenator</h1>
         <nav class="main-nav-container">
             <ul class="main-nav flex clean-list">
-                <li><a href="">Gallery</a></li>
-                <li><a href="#" onclick="renderSavedMemes()">Saved memes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a data-trans="gallery" href="">Gallery</a></li>
+                <li><a data-trans="saved-memes" href="#" onclick="renderSavedMemes()">Saved memes</a></li>
+                <li><a data-trans="about" href="#">About</a></li>
             </ul>
         </nav>
+        <div class="lang-container">
+            <select onchange="onSetLang(this.value)">
+                <option data-trans="lang-select" value="">Select Language</option>
+                <option value="en">English</option>
+                <option value="he">עברית</option>
+            </select>
+            <i class="fa-solid fa-globe"></i>
+        </div>
+        <button class="btn toggle-menu" onclick="onToggleMenu()">☰</button>
     </header>
 
     <section class="gallery">
-        <button onclick="onImgSelect(null, true)">I'm flexible</button>
-        <input list="keywords" oninput="onSetFilterImg(this.value)">
+        <button data-trans="btn-flexible" class="btn flexible" title="Generates a random Meme" onclick="onImgSelect(null, true)">I'm flexible!</button>
+        <input list="keywords" oninput="onSetFilterImg(this.value)" placeholder="Filter images by keyword">
 
         <datalist id="keywords">
             <option value="Baby">
@@ -33,39 +45,60 @@
             <option value="Other">
         </datalist>
 
+        <div class="keywords-container"></div>
         <section class="gallery-container grid"></section>
     </section>
 
     <section class="saved-memes-container grid"></section>
 
     <section class="meme-editor">
+
         <div class="canvas-container">
-            <canvas width="300" height="300"></canvas>
+            <canvas></canvas>
         </div>
-        <input oninput="onSetLine({ txt: this.value })" type="text" name="text" placeholder="Edit text">
-        <input oninput="onSetLine({ color: this.value })" type="color" name="color" value="#ffffff">
 
-        <a href="#" onclick="onDownloadImg(this)" class="btn" download="my-img.jpg">Download as jpeg</a>
+        <div class="edit-text">
+            <input data-trans="edit-line-placeholder" oninput="onSetLine({ txt: this.value })" type="text" name="text"
+                placeholder="Edit Line Text">
+        </div>
 
-        <label for="font-size">Choose Font Size:</label>
-        <input oninput="onSetLine({ fontSize: +this.value });this.title = this.value" type="range" id="font-size"
-            name="font-size" min="16" max="62">
+        <div class="color-font-edit">
+            <input oninput="onSetLine({ color: this.value })" type="color" name="color" value="#ffffff">
+            <label data-trans="font-size" for="font-size">Choose Font Size:</label>
+            <input oninput="onSetLine({ fontSize: +this.value });this.title = this.value" type="range" id="font-size"
+                name="font-size" min="16" max="62">
+        </div>
 
-        <button onclick="onAddLine()" class="btn line-add">Add Line</button>
-        <button onclick="onSwitchLine()" class="btn line-switch">Switch Line</button>
-        <button onclick="onSaveMeme()" class="btn meme-save">Save Meme</button>
-        <button onclick="onUploadImg()" class="btn facebook-share">Share on Facebook</button>
+        <div class="line-actions">
+            <button onclick="onAddLine()" class="btn line-add" title="Add Line"><i
+                    class="fa-solid fa-plus"></i></button>
+            <button onclick="onSwitchLine()" class="btn line-switch" title="Switch Line"><i
+                    class="fa-solid fa-repeat"></i></button>
+            <button onclick="onDeleteLine()" class="btn line-delete" title="Delete Line"><i
+                    class="fa-solid fa-trash"></i></button>
+        </div>
+
+        <div class="save-share-download">
+            <button onclick="onSaveMeme()" class="btn meme-save" title="Save Meme"><i
+                    class="fa-regular fa-floppy-disk"></i></button>
+            <button data-trans="facebook-share" onclick="onUploadImg()" class="btn facebook-share">Share on
+                Facebook</button>
+            <input type="file" onchange="onImgInput(event)" class="btn file-input" name="image" accept="image/*" />
+            <a data-trans="download-img" href="#" onclick="onDownloadImg(this)"
+                download="my-img.jpg">Download
+                as jpeg</a>
+        </div>
 
         <div class="sticker-container flex wrap"></div>
     </section>
 
-    <script src="js/utils.service.js"></script>
-    <script src="js/share.service.js"></script>
-    <script src="js/storage.service.js"></script>
-    <script src="js/meme.service.js"></script>
+    <script src="js/services/i18n.service.js"></script>
+    <script src="js/services/utils.service.js"></script>
+    <script src="js/services/share.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>
