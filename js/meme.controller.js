@@ -8,7 +8,6 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function initMeme() {
     setCanvas()
     resizeCanvas()
-    setInitialLinesPos()
     renderMeme()
     renderStickers()
     addEventListeners()
@@ -33,6 +32,7 @@ function renderMeme() {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        setInitialLinesPos()
         drawLines(meme)
     }
 }
@@ -270,7 +270,7 @@ function setInitialLinesPos() {
     })
 
     if(lines[0]) lines[0].pos.y = 30
-    if(lines[1]) lines[1].pos.y = gElCanvas.height
+    if(lines[1]) lines[1].pos.y = gElCanvas.height - 30
 }
 
 function saveLineSize(line) {

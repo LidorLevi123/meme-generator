@@ -1,10 +1,8 @@
 'use strict'
 
 function onInit() {
-    // renderGallery()
-    // renderKeywords()
-    showMemeEditor()
-    initMeme()
+    renderGallery()
+    renderKeywords()
 }
 
 function renderGallery() {
@@ -19,7 +17,7 @@ function renderKeywords() {
     var strHTML = ''
     for(var keyword in keySeachMap) {
         const fontSize = keySeachMap[keyword]
-        strHTML += `<span onclick="onSetFilterImg('${keyword}');renderKeywords()" style="font-size: ${fontSize/5}em;">${keyword} </span>`
+        strHTML += `<span onclick="onSetFilterImg('${keyword}');renderKeywords()" style="font-size: ${fontSize/5}em;">${keyword}</span>`
     }
     document.querySelector('.keywords-container').innerHTML = strHTML
 }
