@@ -3,11 +3,6 @@
 function onInit() {
     renderGallery()
     renderKeywords()
-    // hideSavedMemes()
-    // hideGallery()
-    // showMemeEditor()
-    // setImg(3)
-    // initMeme()
 }
 
 function renderGallery() {
@@ -27,9 +22,9 @@ function renderKeywords() {
     document.querySelector('.keywords-container').innerHTML = strHTML
 }
 
-function onImgSelect(imgId, isFlexible = false, isSavedMeme) {
+function onImgSelect(imgId, isFlexible = false, isSavedMeme = false) {
     if (isFlexible) {
-        setRandomLines()
+        gMeme.isFlexible = true
         imgId = getRandomInt(1, 27)
     } else if(isSavedMeme) {
         const meme = gSavedMemes.find(meme => meme.selectedImgId === imgId)

@@ -12,13 +12,9 @@
         "save-share-download"
         "stickers";
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-
     box-shadow: 1px 1px 4px rgba(0, 0, 0, .6);
     background-color: var(--clrPrimary1);
+    margin: 2em;
     padding: 2em;
 
     border: 1px solid lightgray;
@@ -58,13 +54,11 @@
 }
 
 .canvas-container {
-    width: 100%;
     grid-area: canvas;
 }
 
 .edit-text {
     grid-area: edit-text;
-    width: 100%;
 }
 
 .edit-text input {

@@ -34,8 +34,13 @@ function getKeywordSearchCountMap() {
 }
 
 function setRandomLines() {
-    const randomLines = [_createLine(getRandomText()), _createLine(getRandomText())]
-    gMeme.lines = randomLines
+    const lineTop = _createLine(getRandomText())
+    const lineBottom = _createLine(getRandomText())
+
+    setLinePos(lineTop, gElCanvas.width / 2, 30)
+    setLinePos(lineBottom, gElCanvas.width / 2, gElCanvas.height - 30)
+
+    gMeme.lines = [lineTop, lineBottom]
 }
 
 function setFilterImg(keyword) {
@@ -88,14 +93,15 @@ function addLine(txt = '') {
     return line
 }
 
+function addImg(imgURL) {
+    gImgs.push(_createImg(getRandomKeywords(), imgURL))
+}
+
 function deleteLine() {
     const lineIdx = gMeme.lines.findIndex(line => line.txt === getCurrLine().txt)
     gMeme.lines.splice(lineIdx, 1)
 }
 
-function addImg(imgURL) {
-    gImgs.push(_createImg(getRandomKeywords(), imgURL))
-}
 
 function isIncluded(keywords, word) {
     for (let i = 0; i < keywords.length; i++) {
@@ -124,9 +130,11 @@ function _createImgs(amount) {
 
 function _createMeme() {
     return {
+        isFlexible: false,
+        isLineDragged: false,
+        isSavedMeme: false,
         selectedImgId: 1,
         selectedLineIdx: 0,
-        isLineDragged: false,
         lines: [
             {
                 txt: 'MEME ME!',

@@ -8,9 +8,9 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function initMeme() {
     setCanvas()
     resizeCanvas()
+    setLinePos(getCurrLine(), gElCanvas.width / 2, 30)
     renderMeme()
     renderStickers()
-    setInitialLinesPos()
     addEventListeners()
 }
 
@@ -31,9 +31,9 @@ function renderMeme() {
     img.src = `img/${meme.selectedImgId}.jpg`
     img.onload = () => {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawLines(meme)
+        if(meme.isFlexible) setRandomLines()
+        drawLines()
     }
 }
 
@@ -125,7 +125,7 @@ function onSwitchLine() {
 
 function onAddLine(txt = '') {
     const line = addLine(txt)
-    setLinePos(line, gElCanvas.width / 2, gElCanvas.height / 2.4)
+    setLinePos(line, gElCanvas.width / 2, gElCanvas.height / 2)
     renderMeme()
 }
 
@@ -140,6 +140,8 @@ function onDownloadImg(elLink) {
 }
 
 function onSaveMeme() {
+    getMeme().isFlexible= false
+    getMeme().isSavedMeme = true
     saveMemeToStorage()
     flashMsg('Meme Saved!')
 }
@@ -187,8 +189,10 @@ function isLineClicked(line = null) {
     return false
 }
 
-function drawLines(meme) {
+function drawLines() {
+    const meme = getMeme()
     if(!meme.lines.length) return
+
     meme.lines.forEach(line => {
         drawText(line.txt, line.fontSize, line.color, line.pos.x, line.pos.y)
         saveLineSize(line, line.pos.x, line.pos.y)
@@ -260,18 +264,6 @@ function setInputs() {
     document.querySelector('[name="text"]').value = txt
     document.querySelector('[name="color"]').value = color
     document.querySelector('[name="font-size"]').value = fontSize
-}
-
-function setInitialLinesPos() {
-    const { lines } = getMeme()
-
-    lines.forEach(line => {
-        line.pos.x = gElCanvas.width / 2
-        line.pos.y = 30
-    })
-
-    if(lines[0]) lines[0].pos.y = 30
-    if(lines[1]) lines[1].pos.y = gElCanvas.height - 30
 }
 
 function saveLineSize(line) {
