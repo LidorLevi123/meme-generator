@@ -1,7 +1,12 @@
-.gallery .btn.flexible {
+.gallery-top-section {
+    padding-bottom: 0;
+}
+
+.gallery-top-section .btn.flexible {
+    place-self: center;
+    width: 50%;
     padding: 1em;
     border-radius: 2em;
-    margin-inline-start: 2em;
     color: white;
     background-color: #ff6600;
     font-weight: bold;
@@ -9,19 +14,18 @@
     transition: opacity .2s;
 }
 
-.gallery .btn.flexible:hover {
-    opacity: .6;
+.gallery-top-section input {
+    border-radius: 2em;
 }
 
-.gallery .keywords-container {
-    display: inline-block;
-    margin-inline-start: 5em;
+.gallery-top-section .keywords-container {
+    place-self: center;
 }
 
-.gallery .keywords-container > *:hover {
+.gallery-top-section .keywords-container > *:hover {
     cursor: pointer;
 }
 
-.gallery .keywords-container > *:not(:last-child) {
+.gallery-top-section .keywords-container > *:not(:last-child) {
     margin-inline-end: 0.5em;
 }

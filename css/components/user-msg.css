@@ -1,0 +1,18 @@
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    
+    background-color: var(--clrPrimary1);
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+
+    border-radius: 10px;
+    padding: 10px;
+    transition: bottom .5s;
+}
+
+.user-msg.open {
+    bottom: 10px;
+}

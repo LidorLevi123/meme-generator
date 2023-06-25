@@ -4,6 +4,7 @@
 }
 
 /* tags */
+
 body {
     background-color: antiquewhite;
     margin: 0;
@@ -29,12 +30,14 @@ img {
     border-radius: 1.5em;
     border: 1px solid black;
     cursor: pointer;
+}
 
+img, button {
     transition: opacity .3s
 }
 
-img:hover {
-    opacity: .8;
+img:hover, button:hover {
+    opacity: .85;
 }
 
 a:hover {

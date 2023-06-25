@@ -10,6 +10,7 @@
 @import url('components/main-screen.css');
 @import url('components/main-header.css');
 @import url('components/meme-editor.css');
+@import url('components/user-msg.css');
 
 /* MEDIA QUERIES */
 @import url('basics/mq.css');

@@ -80,7 +80,7 @@ function onDown(ev) {
 
     setLineDragged(true)
     gStartPos = mousePos
-    document.body.style.cursor = 'grabbing'
+    gElCanvas.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
@@ -99,7 +99,7 @@ function onMove(ev) {
 
 function onUp() {
     setLineDragged(false)
-    document.body.style.cursor = 'grab'
+    gElCanvas.style.cursor = 'grab'
 }
 
 function onSetLine(prop) {
@@ -141,6 +141,7 @@ function onDownloadImg(elLink) {
 
 function onSaveMeme() {
     saveMemeToStorage()
+    flashMsg('Meme Saved!')
 }
 
 function onToggleMenu() {
@@ -285,4 +286,13 @@ function saveFrameCoordsAndSize(frameX, frameY, frameWidth, frameHeight) {
     currLine.frameY = frameY
     currLine.frameWidth = frameWidth
     currLine.frameHeight = frameHeight
+}
+
+function flashMsg(msg) {
+    const el = document.querySelector('.user-msg')
+    el.innerText = msg
+    el.classList.add('open')
+    setTimeout(() => {
+        el.classList.remove('open')
+    }, 2000)
 }

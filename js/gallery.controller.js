@@ -3,6 +3,11 @@
 function onInit() {
     renderGallery()
     renderKeywords()
+    // hideSavedMemes()
+    // hideGallery()
+    // showMemeEditor()
+    // setImg(3)
+    // initMeme()
 }
 
 function renderGallery() {

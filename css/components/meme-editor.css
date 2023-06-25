@@ -26,6 +26,7 @@
 
     display: none;
     font-size: 18px;
+    font-family: sans-serif;
 }
 
 .meme-editor>*:not(.canvas-container)>* {
@@ -34,7 +35,26 @@
 
 .meme-editor .btn {
     font-size: 18px;
+    padding: 0.5em;
     margin-block-end: 1em;
+
+    border: 1px solid gray;
+    border-radius: 0.4em;
+}
+
+.meme-editor .edit-text [name="text"] {
+    border: none;
+    border-radius: 1em;
+
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.meme-editor .line-actions > * {
+    background-color: var(--clrPrimary3);
+}
+
+.meme-editor .save-share-download > *:not(input, a) {
+    background-color: var(--clrPrimary4);
 }
 
 .canvas-container {

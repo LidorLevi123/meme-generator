@@ -34,18 +34,22 @@
     </header>
 
     <section class="gallery">
-        <button data-trans="btn-flexible" class="btn flexible" title="Generates a random Meme" onclick="onImgSelect(null, true)">I'm flexible!</button>
-        <input list="keywords" oninput="onSetFilterImg(this.value)" placeholder="Filter images by keyword">
 
-        <datalist id="keywords">
-            <option value="Baby">
-            <option value="Cat">
-            <option value="Dog">
-            <option value="President">
-            <option value="Other">
-        </datalist>
+        <section class="gallery-top-section grid">
 
-        <div class="keywords-container"></div>
+            <button data-trans="btn-flexible" class="btn flexible" title="Generates a random Meme" onclick="onImgSelect(null, true)">I'm flexible!</button>
+            <input list="keywords" oninput="onSetFilterImg(this.value)" placeholder="Filter images by keyword">
+    
+            <datalist id="keywords">
+                <option value="Baby">
+                <option value="Cat">
+                <option value="Dog">
+                <option value="President">
+                <option value="Other">
+            </datalist>
+    
+            <div class="keywords-container"></div>
+        </section>
         <section class="gallery-container grid"></section>
     </section>
 
@@ -63,7 +67,7 @@
         </div>
 
         <div class="color-font-edit">
-            <input oninput="onSetLine({ color: this.value })" type="color" name="color" value="#ffffff">
+            <input oninput="onSetLine({ color: this.value })" type="color" name="color" value="#ffffff" title="Edit Text Color">
             <label data-trans="font-size" for="font-size">Choose Font Size:</label>
             <input oninput="onSetLine({ fontSize: +this.value });this.title = this.value" type="range" id="font-size"
                 name="font-size" min="16" max="62">
@@ -83,7 +87,7 @@
                     class="fa-regular fa-floppy-disk"></i></button>
             <button data-trans="facebook-share" onclick="onUploadImg()" class="btn facebook-share">Share on
                 Facebook</button>
-            <input type="file" onchange="onImgInput(event)" class="btn file-input" name="image" accept="image/*" />
+            <input type="file" onchange="onImgInput(event)" class="file-input" name="image" accept="image/*" />
             <a data-trans="download-img" href="#" onclick="onDownloadImg(this)"
                 download="my-img.jpg">Download
                 as jpeg</a>
@@ -91,6 +95,8 @@
 
         <div class="sticker-container flex wrap"></div>
     </section>
+
+    <section class="user-msg"></section>
 
     <script src="js/services/i18n.service.js"></script>
     <script src="js/services/utils.service.js"></script>
